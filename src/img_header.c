@@ -45,20 +45,15 @@ int read_image_header(FILE* f, ImageWTYHeader* hdr)
     }
     hdr->magic[8] = '\0'; /* Null-terminate magic string */
 
-    if (read_uint32_le(f, &hdr->header_version) != 0 ||
-        read_uint32_le(f, &hdr->header_size) != 0 ||
-        read_uint32_le(f, &hdr->base_ram) != 0 ||
-        read_uint32_le(f, &hdr->format_version) != 0 ||
+    if (read_uint32_le(f, &hdr->header_version) != 0 || read_uint32_le(f, &hdr->header_size) != 0 ||
+        read_uint32_le(f, &hdr->base_ram) != 0 || read_uint32_le(f, &hdr->format_version) != 0 ||
         read_uint32_le(f, &hdr->total_image_size) != 0 ||
         read_uint32_le(f, &hdr->header_size_aligned) != 0 ||
         read_uint32_le(f, &hdr->file_header_length) != 0 ||
         read_uint32_le(f, &hdr->usb_product_id) != 0 ||
-        read_uint32_le(f, &hdr->usb_vendor_id) != 0 ||
-        read_uint32_le(f, &hdr->hardware_id) != 0 ||
-        read_uint32_le(f, &hdr->firmware_id) != 0 ||
-        read_uint32_le(f, &hdr->unknown1) != 0 ||
-        read_uint32_le(f, &hdr->unknown2) != 0 ||
-        read_uint32_le(f, &hdr->num_files) != 0 ||
+        read_uint32_le(f, &hdr->usb_vendor_id) != 0 || read_uint32_le(f, &hdr->hardware_id) != 0 ||
+        read_uint32_le(f, &hdr->firmware_id) != 0 || read_uint32_le(f, &hdr->unknown1) != 0 ||
+        read_uint32_le(f, &hdr->unknown2) != 0 || read_uint32_le(f, &hdr->num_files) != 0 ||
         read_uint32_le(f, &hdr->unknown3) != 0)
     {
         fprintf(stderr, "Failed to read IMAGEWTY header fields\n");
@@ -81,8 +76,7 @@ int read_file_header(FILE* f, ImageWTYFileHeader* fh, uint32_t file_header_lengt
     long start_offset = ftell(f);
 
     /* Basic header fields */
-    if (read_uint32_le(f, &fh->filename_length) != 0 ||
-        read_uint32_le(f, &fh->header_size) != 0)
+    if (read_uint32_le(f, &fh->filename_length) != 0 || read_uint32_le(f, &fh->header_size) != 0)
     {
         fprintf(stderr, "Failed to read file header basic fields\n");
         return -1;
@@ -124,10 +118,8 @@ int read_file_header(FILE* f, ImageWTYFileHeader* fh, uint32_t file_header_lengt
     fseek(f, 256 - fh->filename_length, SEEK_CUR);
 
     /* File size fields */
-    if (read_uint32_le(f, &fh->stored_length) != 0 ||
-        read_uint32_le(f, &fh->pad1) != 0 ||
-        read_uint32_le(f, &fh->original_length) != 0 ||
-        read_uint32_le(f, &fh->pad2) != 0 ||
+    if (read_uint32_le(f, &fh->stored_length) != 0 || read_uint32_le(f, &fh->pad1) != 0 ||
+        read_uint32_le(f, &fh->original_length) != 0 || read_uint32_le(f, &fh->pad2) != 0 ||
         read_uint32_le(f, &fh->offset) != 0)
     {
         fprintf(stderr, "Failed to read file header size fields\n");

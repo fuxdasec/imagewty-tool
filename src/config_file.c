@@ -8,8 +8,8 @@
 
 #include "config_file.h"
 
-#include <ctype.h>
 #include "img_header.h"
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

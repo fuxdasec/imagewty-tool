@@ -96,8 +96,7 @@ static void check_vfiles_common(const char* dump_folder, int update)
         size_t name_len = strlen(name);
 
         /* Only process files starting with 'V' and ending with ".fex" */
-        if (name[0] != 'V' || name_len < 4 ||
-            strcmp(name + name_len - 4, ".fex") != 0)
+        if (name[0] != 'V' || name_len < 4 || strcmp(name + name_len - 4, ".fex") != 0)
             continue;
 
         /* Skip known vbmeta variants */

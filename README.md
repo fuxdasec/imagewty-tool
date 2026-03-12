@@ -50,6 +50,12 @@ make
 
 # Optional: Install globally
 sudo make install
+
+# Optional: Uninstall
+sudo make uninstall
+
+# Remove build artifacts
+make clean
 ```
 
 This will generate the executable `imagewty-tool` in the project root or install it under `/usr/local/bin/`.
